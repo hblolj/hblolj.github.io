@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('Demo.png')
+            background-image: url('http://image.hblolj.top/beantech/header_img/tag-bg.png')
             /*post*/
         
     }
@@ -147,14 +147,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -261,14 +261,14 @@
 <h4><span id="this-specification-defines-four-grant-types">This specification defines four grant types</span></h4>
 <p>PS: <strong>User-Agent (用户代理)，Web 浏览器就是一个典型的 User-Agent</strong></p>
 <h5><span id="authorization-code-授权码模式">Authorization Code (授权码模式)</span></h5>
-<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g2d01uvy1tj30ht0fd75i.jpg" alt="OAuth2-2"></p>
+<p><img src="http://image.hblolj.top/oauth2/OAuth2-2.jpg" alt="OAuth2-2"></p>
 <p>( A ) 客户端将用户代理引导到 Authorization Server 来启动整个授权流程。客户端包括 Client Identifier，Request Scope，Local State，Redirection URI (授权服务器在授予（或拒绝）访问权限后将用户代理发送回的重定向URI)。</p>
 <p>( B ) Authorization Server (通过用户代理) 对资源所有者进行身份验证，并确定资源所有者是否授权或拒绝客户端的访问请求。</p>
 <p>( C ) 假设 Resource Owner 授予访问权限，Authorization Server 使用先前提供的重定向URI（在请求中或在客户端注册期间）将用户代理重定向回客户端。重定向URI携带 Authorization Code 和客户端先前提供的任何本地状态。</p>
 <p>( D ) 客户端使用步骤 ( C ) 获取到的 Authorization Code 向 Authorization Server 的令牌端点请求 AccessToken。发出请求时，Authorization Server 会对客户端进行身份验证。请求需要携带 Authorization Code 与获取 Authorization Code 时的重定向URI。</p>
 <p>( E ) 授权服务器对客户端进行<strong>身份验证</strong>，<strong>验证 Authorization Code</strong>，并确保收到的<strong>重定向URI</strong>与步骤（C）中用于重定向客户端的URI相匹配。如果有效，授权服务器会发出 AccessToken、Refresh Token(可选)。</p>
 <h5><span id="implicit-简化模式">Implicit (简化模式)</span></h5>
-<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g2d02pr2h6j30h00gv3zt.jpg" alt="OAuth2-3"></p>
+<p><img src="http://image.hblolj.top/oauth2/OAuth2-3.jpg" alt="OAuth2-3"></p>
 <p>( A ) 客户端将用户代理引导到 Authorization Server 来启动整个授权流程。客户端包括 Client Identifier，Request Scope，Local State，Redirection URI (授权服务器在授予（或拒绝）访问权限后将用户代理发送回的重定向URI)。</p>
 <p>( B ) Authorization Server (通过用户代理) 对资源所有者进行身份验证，并确定资源所有者是否授权或拒绝客户端的访问请求。</p>
 <p>( C ) 假设 Resource Owner 授予访问权限，Authorization Server 使用前面提供的重定向URI将用户代理重定向回客户端。重定向URI携带URI片段中的 Access Token。</p>
@@ -277,16 +277,16 @@
 <p>( F ) 用户代理在本地执行由 Web 托管的客户端资源提供的脚本，该脚本提取访问令牌。</p>
 <p>( G ) 用户代理将访问令牌传递给客户端。</p>
 <h5><span id="resource-owner-password-credentials-密码模式">Resource Owner Password Credentials (密码模式)</span></h5>
-<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g2d03fg8boj30if0b0t9j.jpg" alt="OAuth2-4"></p>
+<p><img src="http://image.hblolj.top/oauth2/OAuth2-4.jpg" alt="OAuth2-4"></p>
 <p>( A ) Resource Owner 将用户名、密码提供给客户端。</p>
 <p>( B ) 客户端使用 Resource Owner 提供的用户名、密码向 Authorization Server 请求 Access Token。Authorization Server 收到请求时，会同时对客户端进行身份验证。</p>
 <p>( C ) 授权服务器对客户端进行身份验证并验证 Resource Owner 凭据，如果有效，则发放 Access Token。</p>
 <h5><span id="client-credentials-客户端模式">Client Credentials (客户端模式)</span></h5>
-<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g2d046eif8j30iz05sglt.jpg" alt="OAuth2-5"></p>
+<p><img src="http://image.hblolj.top/oauth2/OAuth2-5.jpg" alt="OAuth2-5"></p>
 <p>( A ) 客户端使用 Authorization Server 进行身份验证，并从令牌端点请求 Access Token。</p>
 <p>( B ) Authorization Server 对客户端进行身份验证，如果有效，则发出 Access Token。</p>
 <h4><span id="refresh-token">Refresh Token</span></h4>
-<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g2d00z0n59j30kj0cm0tw.jpg" alt="OAuth2-6"></p>
+<p><img src="http://image.hblolj.top/oauth2/OAuth2-6.jpg" alt="OAuth2-6"></p>
 <p>( A ) 客户端通过请求向 Authorization Server 进行身份认证且提供 Authorization Grant 来请求 Access Token。</p>
 <p>( B ) Authorization Server 通过对客户端进行身份认证，校验 Authorization Grant，如果有效，发出 Access Token。</p>
 <p>( C ) 客户端使用 Access Token 向 Resource Server 请求受保护的资源。</p>
