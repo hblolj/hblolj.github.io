@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite-url/2019/07/14/SpringSecurity%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</loc>
+        <lastmod>2019-07-14T15:56:53.437Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite-url/2019/04/26/OAuth2/</loc>
         <lastmod>2019-07-12T07:32:49.387Z</lastmod>
         <changefreq>weekly</changefreq>
