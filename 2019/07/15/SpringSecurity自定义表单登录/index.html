@@ -140,14 +140,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -218,7 +218,7 @@
 <li>认证成功或者失败的处理，比如登录成功可以做一些记录，失败做一些处理</li>
 </ul>
 <p>本篇文章就主要解决上面四点问题</p>
-<h4>自定义登录页面/登录地址</h4>
+<h4 id="自定义登录页面-登录地址">自定义登录页面/登录地址</h4>
 <p>OK，首先第一点，让我们来解决一下，将默认的弹框登录方式改为网页表单登录方式。我们只需要在我们的项目中自定义一个 <code>WebSecurityConfigurerAdapter</code> 的实现类，并重写它的 <code>configure(HttpSecurity http)</code> 方法，在这个方法中我们显示指定登录方式为 <code>formLogin</code> (默认为 <code>httpBasic</code> ) 示例如下:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: hblolj</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2019/3/14 10:07</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span>:</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        http.formLogin() <span class="comment">// 指定登录认证方式为表单登录</span></span><br><span class="line">                .and()</span><br><span class="line">                .authorizeRequests()</span><br><span class="line">                .anyRequest() <span class="comment">// 对所有的请求</span></span><br><span class="line">                .authenticated(); <span class="comment">// 都进行认证</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后，重新启动应用，再次访问 <a href="http://localhost:8080/security/hello" target="_blank" rel="noopener">http://localhost:8080/security/hello</a> 接口</p>
@@ -236,7 +236,7 @@
 <p>这里我们注意，<code>loginPage</code> 指定认证页面地址，<code>loginProcessingUrl</code> 指定认证地址，两者只需要配置一个即可，如果都配置了，则只有 <code>loginProcessingUrl</code> 生效。</p>
 <p>这里我们可能会遇到一个需求，我们的后端应用同时给 web 页面与 app 提供服务，这样他们的认证引导方式不一样，该怎么解决。我们要注意的是我们可以在 <code>loginProcessingUrl</code> 配置的接口里通过对请求的判断来动态对 web 和 app 请求进行定制化处理。</p>
 <p>另外，如果配置的是 <code>loginPage</code>，则需要设置 <code>.antMatchers(&quot;/page/login.html&quot;).permitAll()</code> 表示认证页面的访问不需要认证，否则会死循环导致重定向次数过多问题。这样我们就完美的解决了自定义登录页面与地址问题，第一个问题解决。</p>
-<h4>设置资源白名单</h4>
+<h4 id="设置资源白名单">设置资源白名单</h4>
 <p>既然这里用到了 <code>antMatcher</code> 与 <code>permitAll</code>，那我们提前说一下第三个问题，资源白名单，这里要分情况讨论一下:</p>
 <ul>
 <li>前后端分离
@@ -262,7 +262,7 @@
 <p>另一种方式是在自定义的 <strong>WebSecurityConfig</strong> 类中重写 <code>configure(WebSecurity web)</code> 方法，在方法中对静态资源设置不拦截，这里注意一下，<code>spring boot</code> 的默认静态资源放置位置是在 <code>resource/static</code> 下，可以在 <code>static</code> 下新建一个文件夹，然后在上述方法中指定跳过拦截的文件路径即可。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(WebSecurity web)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    web.ignoring().antMatchers(<span class="string">"/page/**"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>到了这里，第三个问题基本上也解决了。那我们还剩下两个问题要处理，自定义认证逻辑与认证结果处理。我们按照业务顺序先来处理一下自定义认证逻辑。</p>
-<h4>自定义认证逻辑</h4>
+<h4 id="自定义认证逻辑">自定义认证逻辑</h4>
 <p>如果让我们来设计认证流程，自定义认证逻辑我们可以分为三块</p>
 <ul>
 <li>从请求中获取用户认证信息，在表单认证这里就是用户名与密码</li>
@@ -313,7 +313,7 @@
 </ul>
 </li>
 </ul>
-<h4>认证结果自定义处理</h4>
+<h4 id="认证结果自定义处理">认证结果自定义处理</h4>
 <p>经过前面的认证，现在会有两个结果，认证成功与认证失败。</p>
 <p>我们需求往往会要求我们正在这时做出对应的处理，比如记录信息、引导用户，返回用户信息等等。</p>
 <p>在 <code>SpringSecurity</code> 里面，框架帮我们封装了两个接口 ( <code>AuthenticationFailureHandler</code> 与 <code>AuthenticationSuccessHandler</code> )，我们只需要实现这两个接口，重写 ( <code>onAuthenticationFailure</code> 与 <code>onAuthenticationSuccess</code> 方法) 并将其实现类配置到我们自定义的 <code>WebSecurityConfig</code> 即可使用。</p>
@@ -391,7 +391,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">自定义登录页面/登录地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">设置资源白名单</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">自定义认证逻辑</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">认证结果自定义处理</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自定义登录页面-登录地址"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">自定义登录页面/登录地址</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#设置资源白名单"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">设置资源白名单</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自定义认证逻辑"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">自定义认证逻辑</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#认证结果自定义处理"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">认证结果自定义处理</span></a></li></ol>
         
         </div>
       </aside>
