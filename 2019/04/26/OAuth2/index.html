@@ -140,14 +140,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -214,10 +214,10 @@
 <p>部分翻译解释可能存在问题，如果发现了，欢迎及时在评论区向博主反馈。</p>
 <p><a href="https://oauth.net/2/" target="_blank" rel="noopener">官网</a></p>
 <p><a href="https://tools.ietf.org/pdf/rfc6749.pdf" target="_blank" rel="noopener">OAuth2 协议官方 pdf</a></p>
-<h4><span id="what-is-oauth2">What is OAuth2 ?</span></h4>
+<h4>What is OAuth2 ?</h4>
 <p>An <strong>open protocol</strong> to allow <strong>secure authorization</strong> in a <strong>simple</strong> and <strong>standard</strong> method from web, mobile and desktop applications.</p>
 <p>关键词: <strong>开源协议、安全授权、简单、标准</strong></p>
-<h4><span id="why">Why ?</span></h4>
+<h4>Why ?</h4>
 <p>为了解决以下问题</p>
 <ul>
 <li>第三方应用程序需要存储资源所有者的凭据供以后使用，通常是明文密码</li>
@@ -226,7 +226,7 @@
 <li>资源所有者不能在不撤销对所有第三方的访问的情况下撤销对单个第三方的访问，而且必须通过更改第三方的密码来撤销访问</li>
 <li>任何第三方应用程序的安全问题都会导致最终用户的密码和所有受该密码保护的数据受到损害</li>
 </ul>
-<h4><span id="oauth2-中的角色">OAuth2 中的角色</span></h4>
+<h4>OAuth2 中的角色</h4>
 <ul>
 <li>
 <p>Resource Owner (资源所有者)</p>
@@ -250,7 +250,7 @@
 </ul>
 </li>
 </ul>
-<h4><span id="protocol-flow">Protocol Flow</span></h4>
+<h4>Protocol Flow</h4>
 <p><img src="http://image.hblolj.top/007rAy9hgy1g2czzgqr1zj30ig0aw3zd.jpg" alt="OAuth2-1"></p>
 <p>( A )  客户端向资源所有者请求授权，授权请求可以直接向资源所有者提出，但是更好的做法是通过 Authorization Server 做中介。在授权码模式下就是将用户引导到 Authorization Server 进行确认。</p>
 <p>( B ) 客户端接收 Authorization Grant，它是代表 Resource Owner 授权的凭据，使用规范的四种授权类型中的一种或者使用扩展授权类型中的一种来表示。授权类型取决于客户端使用的请求授权的方法和 Authorization Server 支持的类型。</p>
@@ -258,16 +258,16 @@
 <p>( D ) Authorization Server 通过对客户端进行身份认证，校验 Authorization Grant，如果有效，发出 Access Token。</p>
 <p>( E ) 客户端使用 Access Token 向 Resource Server 请求受保护的资源。</p>
 <p>( F ) Resource Server 校验 Access Token，如果有效，满足请求。</p>
-<h4><span id="this-specification-defines-four-grant-types">This specification defines four grant types</span></h4>
+<h4>This specification defines four grant types</h4>
 <p>PS: <strong>User-Agent (用户代理)，Web 浏览器就是一个典型的 User-Agent</strong></p>
-<h5><span id="authorization-code-授权码模式">Authorization Code (授权码模式)</span></h5>
+<h5>Authorization Code (授权码模式)</h5>
 <p><img src="http://image.hblolj.top/oauth2/OAuth2-2.jpg" alt="OAuth2-2"></p>
 <p>( A ) 客户端将用户代理引导到 Authorization Server 来启动整个授权流程。客户端包括 Client Identifier，Request Scope，Local State，Redirection URI (授权服务器在授予（或拒绝）访问权限后将用户代理发送回的重定向URI)。</p>
 <p>( B ) Authorization Server (通过用户代理) 对资源所有者进行身份验证，并确定资源所有者是否授权或拒绝客户端的访问请求。</p>
 <p>( C ) 假设 Resource Owner 授予访问权限，Authorization Server 使用先前提供的重定向URI（在请求中或在客户端注册期间）将用户代理重定向回客户端。重定向URI携带 Authorization Code 和客户端先前提供的任何本地状态。</p>
 <p>( D ) 客户端使用步骤 ( C ) 获取到的 Authorization Code 向 Authorization Server 的令牌端点请求 AccessToken。发出请求时，Authorization Server 会对客户端进行身份验证。请求需要携带 Authorization Code 与获取 Authorization Code 时的重定向URI。</p>
 <p>( E ) 授权服务器对客户端进行<strong>身份验证</strong>，<strong>验证 Authorization Code</strong>，并确保收到的<strong>重定向URI</strong>与步骤（C）中用于重定向客户端的URI相匹配。如果有效，授权服务器会发出 AccessToken、Refresh Token(可选)。</p>
-<h5><span id="implicit-简化模式">Implicit (简化模式)</span></h5>
+<h5>Implicit (简化模式)</h5>
 <p><img src="http://image.hblolj.top/oauth2/OAuth2-3.jpg" alt="OAuth2-3"></p>
 <p>( A ) 客户端将用户代理引导到 Authorization Server 来启动整个授权流程。客户端包括 Client Identifier，Request Scope，Local State，Redirection URI (授权服务器在授予（或拒绝）访问权限后将用户代理发送回的重定向URI)。</p>
 <p>( B ) Authorization Server (通过用户代理) 对资源所有者进行身份验证，并确定资源所有者是否授权或拒绝客户端的访问请求。</p>
@@ -276,16 +276,16 @@
 <p>( E ) Web托管的客户端资源返回一个网页（通常是带有嵌入脚本的HTML文档），能够访问完整的重定向URI，包括用户代理保留的片段，并提取包含在其中的访问令牌（和其他参数）。</p>
 <p>( F ) 用户代理在本地执行由 Web 托管的客户端资源提供的脚本，该脚本提取访问令牌。</p>
 <p>( G ) 用户代理将访问令牌传递给客户端。</p>
-<h5><span id="resource-owner-password-credentials-密码模式">Resource Owner Password Credentials (密码模式)</span></h5>
+<h5>Resource Owner Password Credentials (密码模式)</h5>
 <p><img src="http://image.hblolj.top/oauth2/OAuth2-4.jpg" alt="OAuth2-4"></p>
 <p>( A ) Resource Owner 将用户名、密码提供给客户端。</p>
 <p>( B ) 客户端使用 Resource Owner 提供的用户名、密码向 Authorization Server 请求 Access Token。Authorization Server 收到请求时，会同时对客户端进行身份验证。</p>
 <p>( C ) 授权服务器对客户端进行身份验证并验证 Resource Owner 凭据，如果有效，则发放 Access Token。</p>
-<h5><span id="client-credentials-客户端模式">Client Credentials (客户端模式)</span></h5>
+<h5>Client Credentials (客户端模式)</h5>
 <p><img src="http://image.hblolj.top/oauth2/OAuth2-5.jpg" alt="OAuth2-5"></p>
 <p>( A ) 客户端使用 Authorization Server 进行身份验证，并从令牌端点请求 Access Token。</p>
 <p>( B ) Authorization Server 对客户端进行身份验证，如果有效，则发出 Access Token。</p>
-<h4><span id="refresh-token">Refresh Token</span></h4>
+<h4>Refresh Token</h4>
 <p><img src="http://image.hblolj.top/oauth2/OAuth2-6.jpg" alt="OAuth2-6"></p>
 <p>( A ) 客户端通过请求向 Authorization Server 进行身份认证且提供 Authorization Grant 来请求 Access Token。</p>
 <p>( B ) Authorization Server 通过对客户端进行身份认证，校验 Authorization Grant，如果有效，发出 Access Token。</p>
