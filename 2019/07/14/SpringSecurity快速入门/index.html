@@ -214,20 +214,20 @@
 <blockquote>
 <p>Spring Security is a powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications.</p>
 </blockquote>
-<p>翻译过来的大概意思就是 SpringSecurity 是一个强大并且支持高自定义性的认证和授权框架</p>
+<p>翻译过来的大概意思就是 <code>SpringSecurity</code> 是一个强大并且支持高自定义性的认证和授权框架</p>
 <h4><span id="springsecurity-是什么">SpringSecurity 是什么？</span></h4>
 <ul>
-<li>SpringSecurity 是一个 Spring 团队开发基于 Spring 的 <strong>认证</strong> 和 <strong>授权</strong> <strong>框架</strong></li>
+<li><code>SpringSecurity</code> 是一个 <code>Spring</code> 团队开发基于 <code>Spring</code> 的 <strong>认证</strong> 和 <strong>授权</strong> <strong>框架</strong></li>
 <li>特点是 <strong>功能强大</strong> 且 <strong>支持高自定义性</strong></li>
 </ul>
 <h4><span id="为什么要使用-springsecurity">为什么要使用 SpringSecurity？</span></h4>
 <ul>
 <li>为了解决系统中 <strong>认证</strong> 与 <strong>授权</strong> 的需求</li>
-<li>对比自己手动实现的认证、授权框架，SpringSecurity 有以下优点
+<li>对比自己手动实现的认证、授权框架，<code>SpringSecurity</code> 有以下优点
 <ul>
 <li>比较成熟</li>
-<li>对于基于 Spring 开发的项目，集成快速</li>
-<li>无缝对接 Spring 平台</li>
+<li>对于基于 <code>Spring</code> 开发的项目，集成快速</li>
+<li>无缝对接 <code>Spring</code> 平台</li>
 <li>可扩展性高</li>
 <li>功能强大</li>
 </ul>
@@ -247,14 +247,14 @@
 <p>步骤</p>
 <ul>
 <li>
-<p>使用 IDEA 创建一个 SpringBoot 项目，在新建项目选择 Dependeces 勾选 Security，或者创建项目后再 pom 文件中手动添加如下依赖。</p>
+<p>使用 IDEA 创建一个 <code>SpringBoot</code> 项目，在新建项目选择 <code>Dependeces</code> 勾选 <code>Security</code>，或者创建项目后再 <code>pom</code> 文件中手动添加如下依赖。</p>
 </li>
 <li>
-<p>PS: 本次 SpringSecurity 文章中 SpringBoot 版本为 <strong>1.5.19.RELEASE</strong>，SpringSecurity 版本为 <strong>4.2.11.RELEASE</strong>。</p>
+<p>PS: 本次 <code>SpringSecurity</code> 文章中 <code>SpringBoot</code> 版本为 <strong>1.5.19.RELEASE</strong>，<code>SpringSecurity</code> 版本为 <strong>4.2.11.RELEASE</strong>。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 添加 SpringSecurity 依赖，当前的 SpringBoot 版本使用的 <span class="number">1.5</span>.19，对应的 SpringSecurity 版本为 <span class="number">4.2</span>.11 --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>创建一个 Restful 接口，用来做之后访问的目标。</p>
+<p>创建一个 <code>Restful</code> 接口，用来做之后访问的目标。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: hblolj</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2019/3/13 16:06</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span>:</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello Spring Security"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
@@ -264,7 +264,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Using default security password: ce87e8ab-8233-447b-82d8-90268d891615</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>打开我们的浏览器，在地址栏输入接口地址，访问我们的接口 <a href="http://localhost:8080/security/hello" target="_blank" rel="noopener">http://localhost:8080/security/hello</a> (8080 端口与 security 路径是我通过 yml 配置文件自己设置的)。按下回车键，会弹出如下对话框:</p>
+<p>打开我们的浏览器，在地址栏输入接口地址，访问我们的接口 <a href="http://localhost:8080/security/hello" target="_blank" rel="noopener">http://localhost:8080/security/hello</a> (8080 端口与 <code>security</code> 路径是我通过 <code>yml</code> 配置文件自己设置的)。按下回车键，会弹出如下对话框:</p>
 <p><img src="http://image.hblolj.top/blog/security/1/2.jpg" alt="登录"></p>
 <p>该对话框需要我们输入用户名与密码进行登录，从这里可以分析出，我们上面定义的接口已经被保护起来了，访问必要要先认证，而认证的方式是通过填写这个对话框。</p>
 <p>这里用户名默认为 <strong>user</strong>，密码则为上面我们叫大家留意的哪一行日志 (ce87e8ab-8233-447b-82d8-90268d891615)，这里说明一下，这个密码是随机的，每次启动服务，都会生成一个随机的密码。</p>
@@ -276,7 +276,7 @@
 </ul>
 </li>
 <li>
-<p>总结：按照上述步骤，我们就在一个基于 SpringBoot 的项目中引入了 SpringSecurity 框架，但是显而易见的，我们发现这种默认的实现是不能够满足我们的日常开发需求的，我们将可能会用的需求列一下</p>
+<p>总结：按照上述步骤，我们就在一个基于 <code>SpringBoot</code> 的项目中引入了 <code>SpringSecurity</code> 框架，但是显而易见的，我们发现这种默认的实现是不能够满足我们的日常开发需求的，我们将可能会用的需求列一下</p>
 <ul>
 <li>用户登录不可能以这种弹框形式去登录，一般网页都有自己的登录页面(<strong>自定义登录页面</strong>)</li>
 <li>用户名、密码应该是从数据库中读取，而不是默认和随机的(<strong>自定义认证逻辑</strong>)</li>
@@ -293,6 +293,10 @@
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/07/15/SpringSecurity自定义表单登录/" data-toggle="tooltip" data-placement="top" title="[Security] 自定义表单登录">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
